@@ -95,3 +95,71 @@ clearList.addEventListener("click", () => {
 // вложена внутрь
 // ● Для цвета — использовать индекс в data-color-index, и брать цвет из
 // массива: ["white", "yellow", "lightblue"]
+
+const notes = document.querySelector("#notes");
+const createNote = document.querySelector("#createNote");
+
+const counter = () => {
+  let index = 0;
+
+  return () => {
+    index = index + 1;
+    return index;
+  };
+};
+
+const index = counter();
+
+createNote.addEventListener("click", () => {
+  const newNote = document.createElement("li");
+  const remove = document.createElement("button");
+  const up = document.createElement("button");
+  const down = document.createElement("button");
+  const color = document.createElement("button");
+
+  remove.addEventListener("click", () => {
+    newNote.remove();
+  });
+
+  up.addEventListener("click", () => {
+    notes.insertBefore(newNote, newNote.previousSibling);
+  });
+
+  down.addEventListener("click", () => {
+    notes.insertBefore(newNote, newNote.nextSibling.nextSibling);
+  });
+
+  color.addEventListener("click", () => {
+    switch (newNote.style.backgroundColor) {
+      case "yellow":
+        newNote.style.backgroundColor = "lightblue";
+        break;
+      case "lightblue":
+        newNote.style.backgroundColor = "white";
+        break;
+
+      default:
+        newNote.style.backgroundColor = "yellow";
+        break;
+    }
+  });
+
+  notes.style.padding = "0";
+
+  remove.textContent = "❌";
+  up.textContent = "🔼";
+  down.textContent = "🔽";
+  color.textContent = "🎨";
+
+  newNote.textContent = "Новая заметка" + " " + index();
+  newNote.style.display = "flex";
+  newNote.style.gap = "20px";
+  newNote.style.marginBottom = "10px";
+
+  newNote.append(up);
+  newNote.append(down);
+  newNote.append(color);
+  newNote.append(remove);
+
+  notes.append(newNote);
+});
