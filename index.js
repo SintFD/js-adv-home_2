@@ -122,11 +122,15 @@ createNote.addEventListener("click", () => {
   });
 
   up.addEventListener("click", () => {
-    notes.insertBefore(newNote, newNote.previousSibling);
+    if (newNote.previousSibling) {
+      notes.insertBefore(newNote, newNote.previousElementSibling);
+    }
   });
 
   down.addEventListener("click", () => {
-    notes.insertBefore(newNote, newNote.nextSibling.nextSibling);
+    if (newNote.nextElementSibling) {
+      notes.insertBefore(newNote.nextElementSibling, newNote);
+    }
   });
 
   color.addEventListener("click", () => {
