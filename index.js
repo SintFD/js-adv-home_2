@@ -108,7 +108,7 @@ const counter = () => {
   };
 };
 
-const index = counter();
+const numb = counter();
 
 createNote.addEventListener("click", () => {
   const newNote = document.createElement("li");
@@ -151,7 +151,7 @@ createNote.addEventListener("click", () => {
   down.textContent = "🔽";
   color.textContent = "🎨";
 
-  newNote.textContent = "Новая заметка" + " " + index();
+  newNote.textContent = "Новая заметка" + " " + numb();
   newNote.style.display = "flex";
   newNote.style.gap = "20px";
   newNote.style.marginBottom = "10px";
